@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/kotlin-runtime.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/kotlin-reflect.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.42-bin.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
