@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="javafx" name="javafx">
-    <output-path>$PROJECT_DIR$/out/artifacts/javafx</output-path>
-    <root id="root">
-      <element id="library" level="project" name="KotlinJavaRuntime" />
-    </root>
-  </artifact>
-</component>
