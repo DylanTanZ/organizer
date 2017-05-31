@@ -39,23 +39,19 @@ class DB(){
                 if(statement!=null) statement.close();
             }catch(e: SQLException){ println(e.message)}
 
-        }*/
+     }*/
     }
     fun updatePrepare():Connection?{
         return null
     }
 
-    /*fun retrive(query:String){
+    fun retrive(query:String) throw SQLException{
         val conn:Connection?;
-        val statement:Statement?;
+        val statement:Statement?
         var rs: ResultSet?=null
-        try {
-            statement.=conn.createStatement()
-            statement.executeUpdate(query)
-        }catch (e: SQLException){ println(e.message)}
-
-
-    }*/
+        statement.=conn.createStatement()
+        statement.executeUpdate(query)
+    }
 
 
 
