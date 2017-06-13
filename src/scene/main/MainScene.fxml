@@ -1,39 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="917.0" stylesheets="@mainScene.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.scene.MainSceneController">
-    <children>
-        <AnchorPane prefHeight="96.0" prefWidth="917.0" style="-fx-background-color: #3f51b5;">
-            <children>
-                <Button fx:id="homeButton" layoutX="10.0" layoutY="16.0" mnemonicParsing="false" onAction="#homeClick" style="-fx-background-color: transparent;">
-               <graphic>
-                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-                </Button>
-                <Label layoutX="85.0" layoutY="1.0" prefHeight="96.0" prefWidth="392.0" style="-fx-font-size: 24;" text="Personal Manager" textFill="WHITE">
-                    <font>
-                        <Font name="Arial Bold Italic" size="36.0" />
-                    </font>
-                </Label>
-            <Button id="userIcon" fx:id="userIcon1" layoutX="747.0" layoutY="15.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="31.0" prefWidth="66.0">
-               <graphic>
-                  <ImageView id="userIcon" fitHeight="60.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-                <Button layoutX="825.0" layoutY="15.0" mnemonicParsing="false" onAction="#logoutClick" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: transparent;">
-                    <graphic>
-                        <ImageView fitHeight="60.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                    </graphic></Button>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="content" layoutY="96.0" prefHeight="672.0" prefWidth="917.0">
-            <children>
-                <Label layoutX="359.0" layoutY="326.0" text="Click the home button to start" />
-            </children></AnchorPane>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="1366.0" style="-fx-background-color: white;" stylesheets="@controller/MainSceneController.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.main.controller.MainSceneController">
+   <children>
+      <AnchorPane fx:id="content" layoutX="256.0" prefHeight="763.0" prefWidth="1110.0">
+         <children>
+            <JFXSpinner layoutX="539.0" layoutY="366.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="256.0" style="-fx-background-color: #303030;">
+         <children>
+            <VBox layoutY="67.0" prefHeight="696.0" prefWidth="256.0">
+               <children>
+                  <Label stylesheets="@../../resources/fonts/Roboto-Medium.css" text="Main" textFill="WHITE">
+                     <padding>
+                        <Insets left="14.0" />
+                     </padding>
+                  </Label>
+                  <ToggleButton mnemonicParsing="false" onAction="#homeClick" prefHeight="50.0" prefWidth="250.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="menuBar" />
+                     </toggleGroup>
+                     <graphic>
+                        <AnchorPane prefHeight="50.0" prefWidth="4.0">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" style="-fx-padding: none; -fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../resources/images/ic_home_white_48dp_2x.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="70.0" layoutY="9.0" style="-fx-font-size: 24px;" stylesheets="@../../resources/fonts/Raleway-Light.css" text="Home" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#calendarClick" prefHeight="50.0" prefWidth="250.0" toggleGroup="$menuBar">
+                     <graphic>
+                        <AnchorPane prefHeight="50.0" prefWidth="51.0">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/ic_date_range_white_48dp_2x.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="70.0" layoutY="9.0" style="-fx-font-size: 24px;" stylesheets="@../../resources/fonts/Raleway-Light.css" text="Calendar" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" toggleGroup="$menuBar">
+                     <graphic>
+                        <AnchorPane prefHeight="50.0" prefWidth="58.0">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/ic_content_paste_white_48dp_2x.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="70.0" layoutY="9.0" style="-fx-font-size: 24px;" stylesheets="@../../resources/fonts/Raleway-Light.css" text="Task" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+            </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/nyp-logo-white.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

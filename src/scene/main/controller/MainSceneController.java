@@ -1,21 +1,21 @@
 package scene.main.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import util.SecondaryScene;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by hehef on 12/6/2016.
- * Updated by WK on the 15th of January 2017
+ * Created by Liu Woon Kit on 12/6/2017.
  */
 public class MainSceneController implements Initializable{
     // Create static FXMLLoader so that the MainSceneController does not need to keep creating new FXMLLoaders
@@ -25,134 +25,34 @@ public class MainSceneController implements Initializable{
     private AnchorPane content;
 
     @FXML
-    private Label taskCounter;
-
-    @FXML
-    private Label calendarCounter;
-
-    @FXML
-    private Label gpaCounter;
+    private AnchorPane sceneSelector;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        // Set SceneSelector.fxml to a FXMLLoader and set a controller to the FXMLLoader
-        fxmlLoader = new FXMLLoader(getClass().getResource("SceneSelector.fxml"));
-        fxmlLoader.setController(this);
+    public void initialize(URL location, ResourceBundle resource) {
+
     }
 
-    private Parent loadSceneFile(String fileName) {
-        Parent p= null;
-        try {
-            p = FXMLLoader.load(getClass().getResource(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return p;
-    }
+
 
     @FXML
     void homeClick(ActionEvent event) {
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SceneSelector.fxml"));
-        //fxmlLoader.setController(this);
         try {
-            content.getChildren().setAll((AnchorPane)fxmlLoader.load());
+            content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("../../home/Home.fxml")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //updaterCounters();
     }
 
     @FXML
-    void calendarClick(ActionEvent event) throws IOException{
-        content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("Calendar.fxml")));
-    }
-
-    @FXML
-    void taskListClick(ActionEvent event) throws IOException {
-        content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("Tasklist.fxml")));
-    }
-
-    @FXML
-    void noteClick(ActionEvent event) throws IOException{
-        new SecondaryScene("Note.fxml", "Note", false);
-    }
-
-    @FXML
-    void emailClick(ActionEvent event) throws IOException {
-        content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("email.fxml")));
-    }
-
-    @FXML
-    void timerClick(ActionEvent event) throws IOException{
-        new SecondaryScene("PomodoroTimer.fxml", "Timer", false);
-    }
-
-    @FXML
-    void profileClick(ActionEvent event) throws IOException {
-        content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("ProfilePage.fxml")));
-    }
-
-    @FXML
-    void gpaClick(ActionEvent event) throws IOException {
-        content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("gpaCalculator.fxml")));
-
-    }
-    /*@FXML
-    void gameClick(ActionEvent event) {
-
-        Group group=new Group();
-
-        Scene  scene=new Scene(group, SystemConfiguration.getStageWidth(),SystemConfiguration.getStageHeight());
-
-        //this line has problem in artifact
-        MainScreen ms=null;
+    void calendarClick(ActionEvent event) {
         try {
-            ms = new MainScreen(SystemConfiguration.getStageWidth(), SystemConfiguration.getStageHeight());
-        }catch (Exception e){
-            Alert a=new Alert(Alert.AlertType.INFORMATION);
-            a.setContentText(e.getMessage());
-            a.setTitle(e.getMessage());
-            a.showAndWait();
+            content.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("../../calendar/Calendar.fxml")));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        //MainScreen ms=new MainScreen(500,600);
+    }
 
 
-        String path=new File("src/media/Flappy Bird Theme Song.mp3").getAbsolutePath();
-        group.getChildren().add(ms);
-        ms.setGroup(group);
-        ms.start();
-        ms.initiation();
-
-        Stage stage=new Stage();
-        scene.setFill(Color.BLACK);
-        stage.setResizable(false);
-        stage.sizeToScene();
-        stage.setScene(scene);
-        //music
-        Media media=new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        stage.showAndWait();
-        mediaPlayer.stop();
-    }*/
-    /*@FXML
-    void musicClick(ActionEvent event) {
-        Stage stage=new Stage();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("MusicPlayer.fxml"));
-            Scene scene=new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("showmusic");
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-
-        }
-
-
-
-    }*/
 
     /*@FXML
     void logoutClick(ActionEvent event) {
@@ -171,20 +71,32 @@ public class MainSceneController implements Initializable{
 
         //Show the stage
         stage.show();
-    }
-
-    public void updaterCounters() {
-        Calendar cal = new Calendar();
-        TaskDA taskDA = new TaskDA();
-        GpaDA gpaDA = new GpaDA();
-        String date = cal.arrangeDate(cal.getCurrentYear(), cal.getCurrentMonth() + 1, cal.getCurrentDay());
-
-        taskCounter.setText(taskDA.getTotalTasksCounter() + " tasks remaining");
-        calendarCounter.setText(taskDA.getTodayTasksCounter(date) + " tasks due today");
-        gpaCounter.setText(String.format("%.2f", gpaDA.calculateTotalGPA()) + " Cumulative GPA");
-    }
-
-    public void setContent(AnchorPane content) {
-        this.content.getChildren().setAll(content);
     }*/
+
+    private boolean displayStatus = false;
+    @FXML
+    void sceneSelectorClick(ActionEvent event) {
+        int width = 1316;
+        if(displayStatus == false) {
+            displayStatus = true;
+            KeyFrame start = new KeyFrame(Duration.ZERO,
+                    new KeyValue(sceneSelector.translateXProperty(), 0));
+            KeyFrame end = new KeyFrame(Duration.seconds(0.40),
+                    new KeyValue(sceneSelector.translateXProperty(), width + 50));
+            Timeline slide = new Timeline(start, end);
+            slide.setOnFinished(e -> System.out.println("Done"));
+            slide.play();
+        }
+
+        else {
+            displayStatus = false;
+            KeyFrame start = new KeyFrame(Duration.ZERO,
+                    new KeyValue(sceneSelector.translateXProperty(), width + 50));
+            KeyFrame end = new KeyFrame(Duration.seconds(0.5),
+                    new KeyValue(sceneSelector.translateXProperty(), 0));
+            Timeline slide = new Timeline(start, end);
+            slide.setOnFinished(e -> System.out.println("Done"));
+            slide.play();
+        }
+    }
 }

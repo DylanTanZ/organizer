@@ -1,19 +1,23 @@
 package scene.calendar.entity;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.ResourceBundle;
 
 /**
  * Created by Liu Woon Kit on 31/5/2017.
  */
 public class CalendarButton {
     // Temp Entity
-    private ArrayList<?> eventArrayList = new ArrayList<>();
+    //private ArrayList<?> eventArrayList = new ArrayList<>();
 
     // 1 for day, 2 for month, 3 for year;
     private int buttonType;
@@ -24,13 +28,13 @@ public class CalendarButton {
     private Label label;
     private String buttonLabel;
 
-    public ArrayList<?> getEventArrayList() {
+    /*public ArrayList<?> getEventArrayList() {
         return eventArrayList;
     }
 
     public void setEventArrayList(ArrayList<?> eventArrayList) {
         this.eventArrayList = eventArrayList;
-    }
+    }*/
 
     public int getButtonType() {
         return buttonType;

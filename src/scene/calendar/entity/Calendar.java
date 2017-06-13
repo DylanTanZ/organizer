@@ -11,92 +11,96 @@ public class Calendar {
     private final String[] dayOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private final String[] monthOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-    private final int currentDay = date.get(GregorianCalendar.DAY_OF_MONTH);
-    private final int currentMonth = date.get(GregorianCalendar.MONTH);
-    private final int currentYear = date.get(GregorianCalendar.YEAR);
+    private final int CURRENT_DAY = date.get(GregorianCalendar.DAY_OF_MONTH);
+    private final int CURRENT_MONTH = date.get(GregorianCalendar.MONTH);
+    private final int CURRENT_YEAR = date.get(GregorianCalendar.YEAR);
 
-    
-    private int selectedDay = date.get(GregorianCalendar.DAY_OF_MONTH);
-    private int selectedMonth = date.get(GregorianCalendar.MONTH);
-    private int selectedYear = date.get(GregorianCalendar.YEAR);
+    private int selectedDay = CURRENT_DAY;
+    private int selectedMonth = CURRENT_MONTH;
+    private int selectedYear = CURRENT_YEAR;
 
-    private int firstDay;
+    private int firstDayOfMonth;
     private int lastDayOfMonth;
 
-    
-    public int getCurrentDay() {
-        return currentDay;
+    public GregorianCalendar getDate() {
+        return date;
     }
 
-    public int getCurrentMonth() {
-        return currentMonth;
+    public void setDate(GregorianCalendar date) {
+        this.date = date;
     }
 
-    public int getCurrentYear() {
-        return currentYear;
-    }
-
-    public int getSelectedDay() {
-        return date.get(GregorianCalendar.DAY_OF_MONTH);
-    }
-
-    public void setSelectedDay(int selectedDay) {
-        date.set(GregorianCalendar.DAY_OF_MONTH, selectedDay);
-    }
-
-    public int getSelectedMonth() {
-        
-        
-        return date.get(GregorianCalendar.MONTH);
-    }
-
-    public void setSelectedMonth(int selectedMonth) {
-        date.set(GregorianCalendar.MONTH, selectedMonth);
-    }
-
-    public int getSelectedYear() {
-        return date.get(GregorianCalendar.YEAR);
-    }
-
-    public void setSelectedYear(int selectedYear) {
-        date.set(GregorianCalendar.YEAR, selectedYear);
-    }
-
-    
     public String[] getDayOfWeek() {
         return dayOfWeek;
     }
 
     public String[] getMonthOfYear() {
-        return  monthOfYear;
+        return monthOfYear;
     }
 
-    public int getFirstDay() {
+    public int getCURRENT_DAY() {
+        return CURRENT_DAY;
+    }
+
+    public int getCURRENT_MONTH() {
+        return CURRENT_MONTH;
+    }
+
+    public int getCURRENT_YEAR() {
+        return CURRENT_YEAR;
+    }
+
+    public int getSelectedDay() {
+        return selectedDay;
+    }
+
+    public void setSelectedDay(int selectedDay) {
+        this.selectedDay = selectedDay;
+    }
+
+    public int getSelectedMonth() {
+        return selectedMonth;
+    }
+
+    public void setSelectedMonth(int selectedMonth) {
+        this.selectedMonth = selectedMonth;
+    }
+
+    public int getSelectedYear() {
+        return selectedYear;
+    }
+
+    public void setSelectedYear(int selectedYear) {
+        this.selectedYear = selectedYear;
+    }
+
+    public void setFirstDayOfMonth(int firstDayOfMonth) {
+        this.firstDayOfMonth = firstDayOfMonth;
+    }
+
+    public void setLastDayOfMonth(int lastDayOfMonth) {
+        this.lastDayOfMonth = lastDayOfMonth;
+    }
+
+    public int getFirstDayOfMonth() {
         date.set(GregorianCalendar.DAY_OF_MONTH, 1);
         return date.get(GregorianCalendar.DAY_OF_WEEK);
     }
 
-    public int getLastDayOfMonth() {
-        return lastDayOfMonth = date.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+    public int getMaxDaysOfMonth() {
+        lastDayOfMonth = date.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+        return lastDayOfMonth;
     }
 
-    public String getStringDate() {
-        String x = monthOfYear[date.get(GregorianCalendar.MONTH)];
-        String StringDate = x + " " + date.get(GregorianCalendar.YEAR);
-        return StringDate;
+    public String getPreviousMonth() {
+        return monthOfYear[selectedMonth - 1].toUpperCase();
     }
 
-    public String arrangeDate (int year, int month,  int day) {
-        String dayTemp = day + "";
-        if(day < 10)
-            dayTemp = "0" + day;
-
-        String monthTemp = month + "";
-        if(month < 10)
-            monthTemp = "0" + month;
-
-        String date = year + "-" + monthTemp + "-" + dayTemp;
-        return date;
+    public String getNextMonth() {
+        return monthOfYear[selectedMonth + 1].toUpperCase();
     }
 
+    public String toString() {
+        return monthOfYear[selectedMonth].toUpperCase() + ", " + selectedYear;
+    }
 }
