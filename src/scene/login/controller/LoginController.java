@@ -10,7 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import scene.login.entity.User;
 
+// awt for app to browser bridge
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -26,7 +28,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private JFXTextField adminField;
+    private JFXTextField userIDField;
 
     @FXML
     private JFXPasswordField passwordField;
@@ -36,38 +38,21 @@ public class LoginController implements Initializable {
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.browse(new URI("https://cfapps.nyp.edu.sg/CF/SIMS/ResetPin/pin_reset_form.cfm"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException | URISyntaxException e) {}
     }
 
     @FXML
     void loginClick(ActionEvent event) {
-        String adminNo = adminField.getText();
-        String password = passwordField.getText();
-
-        //login checker
-        int result = 0;
-        switch(result) {
-            case 0: {
-                //setLabel("Couldn't find your admin number");
-            }
-            case 1: {
-                //setLabel("Wrong password");
-                //"Incorrect password or admin number";
-                //return;
-            }
+        // Verify login
+        User user = new User();// = new UserDA().checkLogin(userIDField.getText(), passwordField.getText());
+        if(user == null) {
+            // Error
+            return;
         }
 
         // Continue to main scene
         Parent root= null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("../../main/MainScene.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try {root = FXMLLoader.load(getClass().getResource("../../main/MainScene_2.fxml"));} catch (IOException e) {}
 
         Scene scene=new Scene(root);
         Stage stage = (Stage)((Node)event.getTarget()).getScene().getWindow();
@@ -75,7 +60,9 @@ public class LoginController implements Initializable {
         stage.hide();
         stage.setScene(scene);
 
-        // setResizable work around
+        stage.setUserData(user);
+
+        // Work around for setResizable bug
         stage.setScene(scene);
         stage.setResizable(false);
         stage.sizeToScene();

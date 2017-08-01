@@ -20,7 +20,7 @@ public class HomeController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         webView.getEngine().load("http://www.nyp.edu.sg/");
-        webView.setPrefSize(1110, 763);
+        webView.setPrefSize(1275, 763);
         webPane.getChildren().add(webView);
     }
 }

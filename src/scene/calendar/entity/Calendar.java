@@ -8,19 +8,11 @@ import java.util.GregorianCalendar;
 public class Calendar {
     private GregorianCalendar date = new GregorianCalendar();
 
-    private final String[] dayOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private final String[] monthOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     private final int CURRENT_DAY = date.get(GregorianCalendar.DAY_OF_MONTH);
     private final int CURRENT_MONTH = date.get(GregorianCalendar.MONTH);
     private final int CURRENT_YEAR = date.get(GregorianCalendar.YEAR);
-
-    private int selectedDay = CURRENT_DAY;
-    private int selectedMonth = CURRENT_MONTH;
-    private int selectedYear = CURRENT_YEAR;
-
-    private int firstDayOfMonth;
-    private int lastDayOfMonth;
 
     public GregorianCalendar getDate() {
         return date;
@@ -28,10 +20,6 @@ public class Calendar {
 
     public void setDate(GregorianCalendar date) {
         this.date = date;
-    }
-
-    public String[] getDayOfWeek() {
-        return dayOfWeek;
     }
 
     public String[] getMonthOfYear() {
@@ -51,56 +39,31 @@ public class Calendar {
     }
 
     public int getSelectedDay() {
-        return selectedDay;
-    }
-
-    public void setSelectedDay(int selectedDay) {
-        this.selectedDay = selectedDay;
+        return date.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
     public int getSelectedMonth() {
-        return selectedMonth;
-    }
-
-    public void setSelectedMonth(int selectedMonth) {
-        this.selectedMonth = selectedMonth;
+        return date.get(GregorianCalendar.MONTH);
     }
 
     public int getSelectedYear() {
-        return selectedYear;
+        return date.get(GregorianCalendar.YEAR);
     }
 
-    public void setSelectedYear(int selectedYear) {
-        this.selectedYear = selectedYear;
-    }
-
-    public void setFirstDayOfMonth(int firstDayOfMonth) {
-        this.firstDayOfMonth = firstDayOfMonth;
-    }
-
-    public void setLastDayOfMonth(int lastDayOfMonth) {
-        this.lastDayOfMonth = lastDayOfMonth;
-    }
-
-    public int getFirstDayOfMonth() {
+    public int getFirstDayOfWeek() {
         date.set(GregorianCalendar.DAY_OF_MONTH, 1);
         return date.get(GregorianCalendar.DAY_OF_WEEK);
     }
 
     public int getMaxDaysOfMonth() {
-        lastDayOfMonth = date.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
-        return lastDayOfMonth;
-    }
-
-    public String getPreviousMonth() {
-        return monthOfYear[selectedMonth - 1].toUpperCase();
-    }
-
-    public String getNextMonth() {
-        return monthOfYear[selectedMonth + 1].toUpperCase();
+        return date.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
     }
 
     public String toString() {
-        return monthOfYear[selectedMonth].toUpperCase() + ", " + selectedYear;
+        return monthOfYear[date.get(GregorianCalendar.MONTH)] + " " + date.get(GregorianCalendar.YEAR);
+    }
+
+    public void manipulateMth(int i) {
+        date.add(GregorianCalendar.MONTH, i);
     }
 }

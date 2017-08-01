@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -14,26 +15,29 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("../login/Login.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try {root = FXMLLoader.load(getClass().getResource("../login/UI/LoginScene.fxml"));} catch (IOException e) {}
+        //try {root = FXMLLoader.load(getClass().getResource("../event/UI/EventAdd.fxml"));} catch (IOException e) {}
 
         Scene scene = new Scene(root);
 
-        // Set scene decoration
+        // Set scene title
         primaryStage.setTitle("CCA Organizer");
 
+        // Set scene icon
+        primaryStage.getIcons().addAll(
+                new Image(getClass().getResourceAsStream("../../resources/images/icon_64x64.png")),
+                new Image(getClass().getResourceAsStream("../../resources/images/icon_32x32.png")),
+                new Image(getClass().getResourceAsStream("../../resources/images/icon_16x16.png"))
+        );
+
         // Load custom fonts
-        // Don't touch this
+        Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/Ubuntu-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/Raleway-Light.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/Raleway-Thin.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/Roboto-Thin.ttf"), 12);
-        Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/AMDRTG.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("../../resources/fonts/Roboto-Medium.ttf"), 12);
 
-        // setResizable work around
+        // Work around for setResizable bug
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();

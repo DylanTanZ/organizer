@@ -1,37 +1,54 @@
 package scene.event.entity;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.GregorianCalendar;
 
 /**
  * Created by Liu Woon Kit on 12/6/2017.
  */
 public class Event {
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
     private String eventTitle;
+    private int eventID;
     private String eventDesc;
+    private GregorianCalendar dateOfEvent;
+    private Time startTime;
+    private Time endTime;
 
-    public Event(GregorianCalendar startDate, GregorianCalendar endDate, String eventTitle, String eventDesc) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+    // For CCA organizers
+    private boolean isApproved;
+    // For students
+    private boolean isRegisteredByUser;
+
+    public Event(String eventTitle, int eventID, String eventDesc, Date dateOfEvent, Time startTime, Time endTime) {
         this.eventTitle = eventTitle;
+        this.eventID = eventID;
         this.eventDesc = eventDesc;
+        this.dateOfEvent = new GregorianCalendar();
+        this.dateOfEvent.setTime(dateOfEvent);
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public GregorianCalendar getStartDate() {
-        return startDate;
+    public Event(String eventTitle, int eventID, String eventDesc, GregorianCalendar dateOfEvent, Time startTime, Time endTime, boolean isApproved) {
+        this.eventTitle = eventTitle;
+        this.eventID = eventID;
+        this.eventDesc = eventDesc;
+        this.dateOfEvent = dateOfEvent;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.isApproved = isApproved;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
-        this.startDate = startDate;
-    }
-
-    public GregorianCalendar getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(GregorianCalendar endDate) {
-        this.endDate = endDate;
+    public Event(String eventTitle, int eventID, String eventDesc, Date dateOfEvent, Time startTime, Time endTime, boolean isRegisteredByUser) {
+        this.eventTitle = eventTitle;
+        this.eventID = eventID;
+        this.eventDesc = eventDesc;
+        this.dateOfEvent = new GregorianCalendar();
+        this.dateOfEvent.setTime(dateOfEvent);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.isRegisteredByUser = isRegisteredByUser;
     }
 
     public String getEventTitle() {
@@ -42,11 +59,59 @@ public class Event {
         this.eventTitle = eventTitle;
     }
 
+    public int getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
+    }
+
     public String getEventDesc() {
         return eventDesc;
     }
 
     public void setEventDesc(String eventDesc) {
         this.eventDesc = eventDesc;
+    }
+
+    public GregorianCalendar getDateOfEvent() {
+        return dateOfEvent;
+    }
+
+    public void setDateOfEvent(GregorianCalendar dateOfEvent) {
+        this.dateOfEvent = dateOfEvent;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
+    public boolean isRegisteredByUser() {
+        return isRegisteredByUser;
+    }
+
+    public void setRegisteredByUser(boolean registeredByUser) {
+        isRegisteredByUser = registeredByUser;
     }
 }
