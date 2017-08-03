@@ -24,7 +24,7 @@ public class ReportController implements Initializable{
                 sq.setId(data.getInt("id"));
 
                 // get eventrate
-                sq.setEventRate(data.getRate("Question1"));
+                sq.setEventRate(data.RATE("Question1"));
 
                 //get venueRate
                 sq.setVenueRate(data.getRATE("Question2"));
